@@ -22,8 +22,8 @@ class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
         label = customtkinter.CTkLabel(self, text=label_text, image=label_image, compound="left", padx=5, anchor="w")
         label.grid(row=len(self.label_list), column=0, pady=(0, 10), sticky="w")
         if button_type == 1:
-            button = customtkinter.CTkButton(self, image=button_image, fg_color="transparent", width=20, text=None,
-                                             height=20)
+            button = customtkinter.CTkButton(self, image=button_image, fg_color="transparent", hover_color="#8369ff",
+                                             width=20, text=None, height=20)
             button.grid(row=len(self.button_list), column=1, pady=(0, 10), padx=5)
             button.configure(command=partial(pyperclip.copy, label_text))
             self.button_list.append(button)
@@ -116,16 +116,15 @@ class App(customtkinter.CTk):
         self.errors_button.grid(row=5, column=0, sticky="ew", columnspan=2)
 
         self.find_players_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=10, border_spacing=5,
-                                                      text="Find Players", text_color=("gray10", "gray90"),
-                                                      hover_color=("gray70", "gray30"),
-                                                      command=self.find_players_button_event)
-        self.find_players_button.grid(row=6, column=0, padx=15, pady=15,sticky="ew")
+                                                           text="Find Players", text_color=("gray10", "gray90"),
+                                                           hover_color=("gray70", "gray30"), fg_color="#8369ff",
+                                                           command=self.find_players_button_event)
+        self.find_players_button.grid(row=6, column=0, padx=15, pady=15, sticky="ew")
 
-
-
-
-        self.settings_button = customtkinter.CTkButton(self.navigation_frame, image=self.settings_icon, fg_color="transparent", text=None, width=20,
-                                                        height=20, command=self.settings_button_event)
+        self.settings_button = customtkinter.CTkButton(self.navigation_frame, image=self.settings_icon,
+                                                       fg_color="transparent", text=None, width=20,
+                                                       height=20, command=self.settings_button_event,
+                                                       hover_color="#8369ff")
         self.settings_button.grid(row=6, column=1, padx=5)
 
         # create home frame
@@ -250,7 +249,8 @@ class App(customtkinter.CTk):
         self.maximum_guild_level_entry.insert(0.0, settings.MAXIMUM_GUILD_LEVEL)
 
         self.save_button = customtkinter.CTkButton(self.settings_frame, text="Save", command=self.save_settings,
-                                                   width=80, height=10, corner_radius=20)
+                                                   width=80, height=10, corner_radius=20, fg_color="#8369ff",
+                                                   hover_color=("gray70", "gray30"))
         self.save_button.grid(row=9, column=3, padx=0, pady=0, sticky="w")
 
         # select default frame
