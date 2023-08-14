@@ -37,6 +37,9 @@ class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
+
+        customtkinter.set_appearance_mode("dark")
+
         self.all_players = []
 
         self.title("Player Recruitment")
