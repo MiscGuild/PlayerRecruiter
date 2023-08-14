@@ -43,7 +43,7 @@ class App(customtkinter.CTk):
         self.all_players = []
 
         self.title("Player Recruitment")
-        self.geometry("700x450")
+        self.geometry(f"{800}x{500}+0+0")
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
