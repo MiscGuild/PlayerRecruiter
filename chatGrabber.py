@@ -1,4 +1,3 @@
-import re, settings
 import asyncio
 import re
 import settings
@@ -39,6 +38,9 @@ async def grabChat():
                 players = line.split(', ')  # Split at comma and remove whitespace before name
     if not players:
         return None, None, None
+
+    players[-1] = players[-1][:-1]
+
     # Initializing the threads
     threads = [checkPlayer(player.split('] ')[-1]) for player in players]
 
