@@ -65,10 +65,12 @@ class App(customtkinter.CTk):
             dark_image=Image.open(os.path.join(image_path, "add_user_light.png")), size=(20, 20))
         self.copy_icon = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "white_copy.png")),
                                                 size=(20, 20))
-        self.settings_icon = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "white_settings_icon.png")),
-                                                    size=(20, 20))
-        self.question_mark = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "white_question_mark.png")),
-                                                    size=(20, 25))
+        self.settings_icon = customtkinter.CTkImage(
+            dark_image=Image.open(os.path.join(image_path, "white_settings_icon.png")),
+            size=(20, 20))
+        self.question_mark = customtkinter.CTkImage(
+            dark_image=Image.open(os.path.join(image_path, "white_question_mark.png")),
+            size=(20, 25))
         self.iconbitmap(os.path.join(image_path, "misc.ico"))
 
         # create navigation frame
@@ -76,10 +78,10 @@ class App(customtkinter.CTk):
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.navigation_frame.grid_rowconfigure(4, weight=1)
 
-        self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text="  Player Recruitment",
-                                                             compound="left",
-                                                             font=customtkinter.CTkFont(size=15, weight="bold"))
-        self.navigation_frame_label.grid(row=0, column=0, padx=20, pady=20)
+        self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text="Player Recruitment",
+                                                             justify=customtkinter.CENTER, fg_color="transparent",
+                                                             font=customtkinter.CTkFont(size=25, weight="bold"))
+        self.navigation_frame_label.grid(row=0, column=0, padx=20, pady=20, columnspan=2)
 
         self.home_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10,
                                                    text="All",
