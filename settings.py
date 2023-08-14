@@ -1,9 +1,10 @@
 import os
 import json
+import os
+
 
 def init():
     config = getSettings()
-
 
     API_KEY = config["API_KEY"]
     PATH = config["PATH"]
@@ -28,8 +29,6 @@ def getSettings():
     folder_name = "MiscRecruitment"
     folder_path = os.path.join(documents_path, folder_name)
     file_name = "config.json"
-
-
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
@@ -60,8 +59,9 @@ def getSettings():
 
     return config
 
+
 def updateSettings(API_KEY, PATH, SKYWARS_WINS, SKYWARS_LEVEL, BEDWARS_WINS, BEDWARS_INDEX, BEDWARS_FKDR,
-                    DUELS_WINS, DUELS_WLR, ARCADE_WINS, MURDER_MYSTERY_WINS, MINIMUM_GEXP,
+                   DUELS_WINS, DUELS_WLR, ARCADE_WINS, MURDER_MYSTERY_WINS, MINIMUM_GEXP,
                    MAXIMUM_GUILD_LEVEL):
     user_home = os.path.expanduser("~")
     User_Profile = os.getenv('USERPROFILE')
@@ -101,6 +101,3 @@ def updateSettings(API_KEY, PATH, SKYWARS_WINS, SKYWARS_LEVEL, BEDWARS_WINS, BED
         json.dump(json_data, f)
 
     init()
-
-
-

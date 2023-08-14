@@ -1,7 +1,9 @@
-import aiohttp
-from math import sqrt
-import settings
 import asyncio
+from math import sqrt
+
+import aiohttp
+
+import settings
 
 
 async def get_hyapi_key():
@@ -42,7 +44,6 @@ async def get_hypixel_player(name: str = None, uuid: str = None):
         resp = await get_json_response(f"https://api.hypixel.net/player?key={api_key}&uuid={uuid}")
     else:
         resp = await get_json_response(f"https://api.hypixel.net/player?key={api_key}&name={name}")
-
 
     # Player doesn't exist
     if "player" not in resp or not resp["player"]:
@@ -299,11 +300,12 @@ async def check_network_level_requirements(player_data):
 
     return False
 
+
 async def check_gexp_requirements(guild_data, uuid):
     if guild_data:
         for member in guild_data["members"]:
             if member["uuid"] == uuid:
-                 gexp = sum(member["expHistory"].values())
+                gexp = sum(member["expHistory"].values())
 
         if gexp > settings.MINIMUM_GEXP:
             return True
@@ -316,6 +318,7 @@ async def check_max_guild_level(guild_data):
             return True
 
     return False
+
 
 async def check_if_meets_requirements(username):
     meets_requirements = False
@@ -332,14 +335,11 @@ async def check_if_meets_requirements(username):
     if not player_data:
         return None, None, True
 
-
-
     meets_skywars_requirements = await check_skywars_requirements(player_data)
     meets_bedwars_requirements = await check_bedwars_requirements(player_data)
     meets_duels_requirements = await check_duels_requirements(player_data)
     meets_arcade_requirements = await check_arcade_requirements(player_data)
     meets_murderymystery_requirements = await check_murdermystery_requirements(player_data)
-
 
     if any([meets_skywars_requirements, meets_bedwars_requirements, meets_duels_requirements, meets_arcade_requirements,
             meets_murderymystery_requirements]):

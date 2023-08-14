@@ -1,6 +1,9 @@
 import re, settings
 import asyncio
+import re
+import settings
 from threading import Thread
+
 from request_utils import check_if_meets_requirements
 
 
@@ -21,6 +24,7 @@ class checkPlayer(Thread):
             self.meets_requirements.append(self.player)
         elif error:
             self.error.append(self.player)
+
 
 async def grabChat():
     # Opening the logs file
