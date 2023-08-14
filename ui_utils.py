@@ -18,13 +18,16 @@ class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
         self.label_list = []
         self.button_list = []
 
-    def add_item(self, label_text, label_image=None, button_image=None):
+    def add_item(self, label_text, label_image=None, button_image=None, button_type=1):
         label = customtkinter.CTkLabel(self, text=label_text, image=label_image, compound="left", padx=5, anchor="w")
-        button = customtkinter.CTkButton(self, image=button_image, fg_color="transparent", width=20, text=None,
-                                         height=20)
         label.grid(row=len(self.label_list), column=0, pady=(0, 10), sticky="w")
-        button.grid(row=len(self.button_list), column=1, pady=(0, 10), padx=5)
-        button.configure(command=partial(pyperclip.copy, label_text))
+        if button_type == 1:
+            button = customtkinter.CTkButton(self, image=button_image, fg_color="transparent", width=20, text=None,
+                                             height=20)
+            button.grid(row=len(self.button_list), column=1, pady=(0, 10), padx=5)
+            button.configure(command=partial(pyperclip.copy, label_text))
+            self.button_list.append(button)
+
         self.label_list.append(label)
 
     def copy_button_event(self, index):
@@ -272,7 +275,7 @@ class App(customtkinter.CTk):
             self.errors_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
             for player in errors:
                 if player:
-                    self.errors_frame.add_item(label_text=player, button_image=self.copy_icon)
+                    self.errors_frame.add_item(label_text=player, button_type=1)
         self.all_players = all_players
 
     def select_frame_by_name(self, name):
