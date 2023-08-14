@@ -86,6 +86,8 @@ async def get_player_guild(uuid):
 
     # Player is not in a guild
     if "guild" not in resp or not resp["guild"]:
+        if "throttle" in resp:
+            return "API Throttle"
         return None
 
     # Player is in a guild
@@ -312,6 +314,7 @@ async def check_gexp_requirements(guild_data, uuid):
 
     return False
 
+
 async def check_max_guild_level(guild_data):
     if guild_data:
         if (await get_guild_level(guild_data["exp"])) > settings.MAXIMUM_GUILD_LEVEL:
@@ -349,6 +352,9 @@ async def check_if_meets_requirements(username):
         guild_data = await get_player_guild(uuid)
         if not guild_data:
             guildless = True
+        elif guild_data == "API Throttle":
+            guildless = False
+            return guildless, meets_requirements, error
         else:
             meets_gexp_requirements = await check_gexp_requirements(guild_data, uuid)
             meets_max_guild_level = await check_max_guild_level(guild_data)
