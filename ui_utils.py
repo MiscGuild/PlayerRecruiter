@@ -156,8 +156,12 @@ class App(customtkinter.CTk):
                                            text="Path: ")
         self.path.grid(row=1, column=0, padx=10, pady=10)
 
-
-        self.path_dropdown = customtkinter.CTkComboBox(self.settings_frame, width=300, values=["Lunar Client", "Badlion Client", "Vanilla"])
+        self.path_dropdown = customtkinter.CTkComboBox(self.settings_frame,
+                                                       width=300,
+                                                       values=["Lunar Client",
+                                                               "Badlion Client",
+                                                               "Feather Client",
+                                                               "Vanilla"])
         self.path_dropdown.grid(row=1, column=1, padx=10, pady=10, columnspan=4)
 
         self.skywars_wins = customtkinter.CTkLabel(self.settings_frame,

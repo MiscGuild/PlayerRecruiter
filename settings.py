@@ -1,4 +1,3 @@
-import os
 import json
 import os
 
@@ -73,6 +72,7 @@ def updateSettings(API_KEY, PATH, SKYWARS_WINS, SKYWARS_LEVEL, BEDWARS_WINS, BED
     paths_dict = {
         "Lunar Client": fr'{User_Profile}\.lunarclient\offline\multiver\logs\latest.log',
         "Badlion Client": fr'{User_Profile}\AppData\Roaming\.minecraft\logs\blclient\minecraft\latest.log',
+        "Feather Client": fr'{User_Profile}\AppData\Roaming\.minecraft\logs\latest.log',
         "Vanilla": fr'{User_Profile}\AppData\Roaming\.minecraft\logs\latest.log'
     }
 
