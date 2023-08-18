@@ -425,7 +425,7 @@ class App(customtkinter.CTk):
     def select_stat_settings_button_event(self):
         self.select_frame_by_name("stat_settings_frame")
 
-    # Event that gets called 10 times per second, makes user focus on next text box if tab is pressed
+    # Event that gets called every 5 milliseconds, makes user focus on next text box if tab is pressed
     def tab_press_check(self, event):
         if "text_inputs" in dir(self.selected_frame):
             helper = self.tab_fix()
