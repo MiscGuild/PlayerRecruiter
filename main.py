@@ -6,6 +6,7 @@ if __name__ == "__main__":
     settings.init()
 
     app = App()
-    app.mainloop()
+    app.after(5, app.tab_press_check, app.tab_press_check) # Starting the tab check
+    app.mainloop() # Starting the app
 
 
