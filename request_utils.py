@@ -223,7 +223,7 @@ async def check_bedwars_requirements(player_data):
     fkdr = final_kills / final_deaths
     index = star * pow(fkdr, 2)
 
-    if (wins > settings.BEDWARS_WINS) and (fkdr > settings.BEDWARS_FKDR) and (index > settings.BEDWARS_INDEX):
+    if (wins > settings.BEDWARS_WINS) and (fkdr > settings.BEDWARS_FKDR) and (index > settings.BEDWARS_INDEX) and (star >= settings.BEDWARS_STARS):
         return True
 
     return False
