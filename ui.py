@@ -292,7 +292,6 @@ class App(customtkinter.CTk):
             self.home_no_players_label.destroy()
 
             self.home_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
-            self.home_frame.set_focus()
             for player in all_players:
                 if player:
                     self.home_frame.add_item(label_text=player, button_image=self.copy_icon)
