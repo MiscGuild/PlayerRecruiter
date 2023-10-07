@@ -48,6 +48,9 @@ class CustomFrame(CTkFrame):
         # Call the parent class's constructor with necessary arguments
         super().__init__(master=frame, corner_radius=corner_radius, fg_color=fg_color)
 
+    def add_item(self, label_text, button_image):
+        self.add_item(label_text=label_text, button_image=button_image)
+
 
 class CustomLabel(CTkLabel):
     def __init__(self, frame, text, rel=(None, None), dimensions=(None, None), pad=(None, None), columnspan=None, justify=CENTER, anchor="center", fSize = 30, fWeight = "normal"):
