@@ -1,5 +1,6 @@
-
-from customtkinter import CTkButton, CTkFrame, CTkLabel, CTkImage, CTkFont, CENTER, CTkTextbox, CTkComboBox
+import pyperclip
+from functools import partial
+from customtkinter import CTkButton, CTkFrame, CTkLabel, CTkImage, CTkFont, CENTER, CTkTextbox, CTkComboBox, CTkScrollableFrame
 
 # Define the UI element classes here
 
@@ -48,8 +49,27 @@ class CustomFrame(CTkFrame):
         # Call the parent class's constructor with necessary arguments
         super().__init__(master=frame, corner_radius=corner_radius, fg_color=fg_color)
 
-    def add_item(self, label_text, button_image):
-        self.add_item(label_text=label_text, button_image=button_image)
+
+
+class ScrollableLabelButtonFrame(CTkScrollableFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.grid_columnconfigure(0, weight=1)
+
+        self.label_list = []
+        self.button_list = []
+
+    def add_item(self, label_text, label_image=None, button_image=None, button_type=1):
+        label = CTkLabel(self, text=label_text, image=label_image, compound="left", padx=5, anchor="w")
+        label.grid(row=len(self.label_list), column=0, pady=(0, 10), sticky="w")
+        if button_type == 1:
+            button = CTkButton(self, image=button_image, fg_color="transparent", hover_color="#8369ff",
+                                             width=20, text=None, height=20)
+            button.grid(row=len(self.button_list), column=1, pady=(0, 10), padx=5)
+            button.configure(command=partial(pyperclip.copy, label_text))
+            self.button_list.append(button)
+
+        self.label_list.append(label)
 
 
 class CustomLabel(CTkLabel):

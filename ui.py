@@ -2,39 +2,16 @@ import asyncio
 from functools import partial
 
 import customtkinter
-import pyperclip
 
 from utils import settings
 from utils.chatGrabber import grabChat
 from utils.setup import setup
 from utils.ui_utils import CustomNavigationButton, CustomButton, CustomFrame, CustomLabel, CustomEntry, CustomComboBox, \
-    select_frame_by_name
+    select_frame_by_name, ScrollableLabelButtonFrame
 
 from CTkMessagebox import CTkMessagebox
 
 
-class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
-        self.grid_columnconfigure(0, weight=1)
-
-        self.label_list = []
-        self.button_list = []
-
-    def add_item(self, label_text, label_image=None, button_image=None, button_type=1):
-        label = customtkinter.CTkLabel(self, text=label_text, image=label_image, compound="left", padx=5, anchor="w")
-        label.grid(row=len(self.label_list), column=0, pady=(0, 10), sticky="w")
-        if button_type == 1:
-            button = customtkinter.CTkButton(self, image=button_image, fg_color="transparent", hover_color="#8369ff",
-                                             width=20, text=None, height=20)
-            button.grid(row=len(self.button_list), column=1, pady=(0, 10), padx=5)
-            button.configure(command=partial(pyperclip.copy, label_text))
-            self.button_list.append(button)
-
-        self.label_list.append(label)
-
-    def copy_button_event(self, index):
-        print(index)
 
 
 class App(customtkinter.CTk):
@@ -314,22 +291,23 @@ class App(customtkinter.CTk):
             self.meets_requirements_frame_no_players_label.destroy()
             self.home_no_players_label.destroy()
 
-            self.home_frame = CustomFrame(self)
+            self.home_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
+            self.home_frame.set_focus()
             for player in all_players:
                 if player:
                     self.home_frame.add_item(label_text=player, button_image=self.copy_icon)
 
-            self.meets_requirements_frame = CustomFrame(self)
+            self.meets_requirements_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
             for player in meets_requirements:
                 if player:
                     self.meets_requirements_frame.add_item(label_text=player, button_image=self.copy_icon)
 
-            self.guildless_frame = CustomFrame(self)
+            self.guildless_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
             for player in guildless:
                 if player:
                     self.guildless_frame.add_item(label_text=player, button_image=self.copy_icon)
 
-            self.errors_frame = CustomFrame(self)
+            self.errors_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
             for player in errors:
                 if player:
                     self.errors_frame.add_item(label_text=player, button_type=1)
