@@ -381,8 +381,8 @@ class App(customtkinter.CTk):
 
     def save_settings(self):
 
-        API_KEY = (self.api_key_entry.get(1.0, "end-1c"))
-        PATH = (self.path_dropdown.get())
+        API_KEY = (self.api_key.get(1.0, "end-1c"))
+        PATH = (self.path.get())
         SKYWARS_WINS = int(self.skywars_wins.get(1.0, "end-1c"))
         SKYWARS_LEVEL = int(self.skywars_level.get(1.0, "end-1c"))
         BEDWARS_STARS = int(self.bedwars_stars.get(1.0, "end-1c"))
