@@ -16,8 +16,8 @@ def init():
     }
 
     API_KEY = config["API_KEY"]
-    PATH = config["PATH"]
     PATH = list(paths_dict.keys())[list(paths_dict.values()).index(config["PATH"])]
+    FULL_PATH = config["PATH"]
     SKYWARS_WINS = config["REQUIREMENTS"]["SKYWARS_WINS"]
     SKYWARS_LEVEL = config["REQUIREMENTS"]["SKYWARS_LEVEL"]
     BEDWARS_STARS = config["REQUIREMENTS"]["BEDWARS_STARS"]
