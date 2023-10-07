@@ -63,6 +63,9 @@ class CustomLabel(CTkLabel):
         if columnspan:
             self.grid(columnspan=columnspan)
 
+    def destroy(self):
+        super().destroy()
+
 class CustomEntry(CTkTextbox):
     def __init__(self, app, frame, text, eRow, eCol, eWidth=80, eHeight=1, ePad=(10,10), eSticky='w', hasLabel = False, lRow=None, lCol=None, lPad=(10,10), lsticky='w', defaultVal=None, append=False):
         super().__init__(master=frame, width=eWidth, height=eHeight)
