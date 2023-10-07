@@ -81,3 +81,14 @@ class CustomEntry(CTkTextbox):
         if append:
             frame.text_inputs.append(self)
 
+class CustomComboBox(CTkComboBox):
+    def __init__(self, app, frame, text, cRow, cCol, values,cWidth=150, cHeight=20, cPad=(10,10), cSticky='w', hasLabel = False, lRow=None, lCol=None, lPad=(10,10), lsticky='w', defaultVal=None, append=False):
+        super().__init__(master=frame, width=cWidth, height=cHeight, values=values)
+        self.grid(row=cRow, column=cCol, padx=cPad[0], pady=cPad[1], sticky=cSticky)
+        if defaultVal is not None:
+            self.set(defaultVal)
+        if hasLabel:
+            label = CustomLabel(frame, text, rel=(lRow, lCol), pad=lPad, anchor=lsticky, fSize=12)
+            label.grid(row=lRow, column=lCol, padx=lPad[0], pady=lPad[1], sticky=lsticky)
+        if append:
+            frame.text_inputs.append(self)
