@@ -384,66 +384,21 @@ class App(customtkinter.CTk):
                     self.errors_frame.add_item(label_text=player, button_type=1)
         self.all_players = all_players
 
-    def select_frame_by_name(self, name):
-        # set button color for selected button
-        fg_color = ("gray75", "gray25")
-        self.home_button.configure(fg_color=fg_color if name == "home" else "transparent")
-        self.meets_requirements_button.configure(fg_color=fg_color if name == "guildless_frame" else "transparent")
-        self.guildless_button.configure(fg_color=fg_color if name == "meets_requirements_frame" else "transparent")
-        self.errors_button.configure(fg_color=fg_color if name == "errors_frame" else "transparent")
-        self.select_settings_frame.configure(fg_color=fg_color if name == "select_settings_frame" else "transparent")
-
-        # show selected frame
-        if name == "home":
-            self.home_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.home_frame
-        else:
-            self.home_frame.grid_forget()
-        if name == "guildless_frame":
-            self.meets_requirements_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.meets_requirements_frame
-        else:
-            self.meets_requirements_frame.grid_forget()
-        if name == "meets_requirements_frame":
-            self.guildless_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.guildless_frame
-        else:
-            self.guildless_frame.grid_forget()
-        if name == "errors_frame":
-            self.errors_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.errors_frame
-        else:
-            self.errors_frame.grid_forget()
-        if name == "other_settings_frame":
-            self.other_settings_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.other_settings_frame
-        else:
-            self.other_settings_frame.grid_forget()
-        if name == "select_settings_frame":
-            self.select_settings_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.select_settings_frame
-        else:
-            self.select_settings_frame.grid_forget()
-        if name == "stat_settings_frame":
-            self.stat_settings_frame.grid(row=0, column=1, sticky="nsew")
-            self.selected_frame = self.stat_settings_frame
-        else:
-            self.stat_settings_frame.grid_forget()
 
     def home_button_event(self):
-        self.select_frame_by_name("home")
+        select_frame_by_name(self, "home")
 
     def meets_requirements_button_event(self):
-        self.select_frame_by_name("guildless_frame")
+        select_frame_by_name(self, "guildless_frame")
 
     def guildless_button_event(self):
-        self.select_frame_by_name("meets_requirements_frame")
+        select_frame_by_name(self, "meets_requirements_frame")
 
     def errors_button_event(self):
-        self.select_frame_by_name("errors_frame")
+        select_frame_by_name(self, "errors_frame")
 
     def settings_button_event(self):
-        self.select_frame_by_name("select_settings_frame")
+        select_frame_by_name(self, "settings_frame")
 
     def find_players_button_event(self):
         self.find_players()

@@ -1,5 +1,5 @@
 
-from customtkinter import CTkButton, CTkFrame, CTkLabel, CTkImage, CTkFont, CENTER, CTkTextbox
+from customtkinter import CTkButton, CTkFrame, CTkLabel, CTkImage, CTkFont, CENTER, CTkTextbox, CTkComboBox
 
 # Define the UI element classes here
 
@@ -92,3 +92,40 @@ class CustomComboBox(CTkComboBox):
             label.grid(row=lRow, column=lCol, padx=lPad[0], pady=lPad[1], sticky=lsticky)
         if append:
             frame.text_inputs.append(self)
+
+def select_frame_by_name(app, name):
+    # set button color for selected button
+    fg_color = ("gray75", "gray25")
+    app.home_button.configure(fg_color=fg_color if name == "home" else "transparent")
+    app.meets_requirements_button.configure(fg_color=fg_color if name == "guildless_frame" else "transparent")
+    app.guildless_button.configure(fg_color=fg_color if name == "meets_requirements_frame" else "transparent")
+    app.errors_button.configure(fg_color=fg_color if name == "errors_frame" else "transparent")
+    app.settings_frame.configure(fg_color=fg_color if name == "settings_frame" else "transparent")
+
+    # show selected frame
+    if name == "home":
+        app.home_frame.grid(row=0, column=1, sticky="nsew")
+        app.selected_frame = app.home_frame
+    else:
+        app.home_frame.grid_forget()
+    if name == "guildless_frame":
+        app.meets_requirements_frame.grid(row=0, column=1, sticky="nsew")
+        app.selected_frame = app.meets_requirements_frame
+    else:
+        app.meets_requirements_frame.grid_forget()
+    if name == "meets_requirements_frame":
+        app.guildless_frame.grid(row=0, column=1, sticky="nsew")
+        app.selected_frame = app.guildless_frame
+    else:
+        app.guildless_frame.grid_forget()
+    if name == "errors_frame":
+        app.errors_frame.grid(row=0, column=1, sticky="nsew")
+        app.selected_frame = app.errors_frame
+    else:
+        app.errors_frame.grid_forget()
+    if name == "settings_frame":
+        app.settings_frame.grid(row=0, column=1, sticky="nsew")
+        app.selected_frame = app.settings_frame
+    else:
+        app.settings_frame.grid_forget()
+
