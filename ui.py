@@ -385,7 +385,7 @@ class App(customtkinter.CTk):
             CTkMessagebox(title="Error", message="Your API Key is invalid!", icon="warning")
             select_frame_by_name(self, "settings_frame")
         else:
-            self.select_frame_by_name("home")
+            select_frame_by_name(self, "home")
 
     def find_players(self):
 
@@ -484,4 +484,4 @@ class App(customtkinter.CTk):
                                 MAXIMUM_GUILD_LEVEL, NETWORK_LEVEL)
         asyncio.run(asyncio.sleep(0.5))
 
-        self.select_frame_by_name("home")
+        select_frame_by_name(self, "home")
