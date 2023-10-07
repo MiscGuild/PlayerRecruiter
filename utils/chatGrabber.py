@@ -3,7 +3,7 @@ import re
 import settings
 from threading import Thread
 
-from request_utils import check_if_meets_requirements
+from utils.request_utils import check_if_meets_requirements
 
 
 # Credits to https://github.com/Were-Woof/Lobby-Stat-Check for the below code
