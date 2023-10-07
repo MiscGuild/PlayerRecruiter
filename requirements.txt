@@ -1,0 +1,5 @@
+customtkinter==5.2.0
+pyperclip==1.8.2
+pillow==10.0.1
+aiohttp==3.8.5
+CTkMessagebox==2.5.0

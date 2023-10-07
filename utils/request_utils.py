@@ -3,7 +3,7 @@ from math import sqrt
 
 import aiohttp
 
-import settings
+import utils.settings as settings
 
 
 async def get_hyapi_key():
@@ -23,7 +23,13 @@ async def get_json_response(url: str):
     # Return JSON response
     return resp
 
-
+async def check_api_key():
+    api_key = await get_hyapi_key()
+    resp = await get_json_response(f"https://api.hypixel.net/player?key={api_key}&name=Hypixel")
+    if "cause" in resp:
+        if resp["cause"] == "Invalid API key":
+            return False
+    return True
 async def get_mojang_profile(name: str):
     resp = await get_json_response(f"https://api.mojang.com/users/profiles/minecraft/{name}")
     # If player and request is valid
