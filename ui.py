@@ -394,26 +394,30 @@ class App(customtkinter.CTk):
 
         all_players, guildless, meets_requirements, errors = asyncio.run(grabChat())
         if all_players is not None and set(all_players) != set(self.all_players):
-            self.home_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
+            self.guildless_frame_no_players_label.destroy()
+            self.meets_requirements_frame_no_players_label.destroy()
+            self.home_no_players_label.destroy()
+
+            self.home_frame = CustomFrame(self)
             for player in all_players:
                 if player:
                     self.home_frame.add_item(label_text=player, button_image=self.copy_icon)
 
-            self.meets_requirements_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
+            self.meets_requirements_frame = CustomFrame(self)
             for player in meets_requirements:
                 if player:
                     self.meets_requirements_frame.add_item(label_text=player, button_image=self.copy_icon)
 
-            self.guildless_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
+            self.guildless_frame = CustomFrame(self)
             for player in guildless:
                 if player:
                     self.guildless_frame.add_item(label_text=player, button_image=self.copy_icon)
 
-            self.errors_frame = ScrollableLabelButtonFrame(master=self, fg_color="transparent")
+            self.errors_frame = CustomFrame(self)
             for player in errors:
                 if player:
                     self.errors_frame.add_item(label_text=player, button_type=1)
-        self.all_players = all_players
+            self.all_players = all_players
 
 
     def home_button_event(self):
