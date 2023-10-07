@@ -5,8 +5,19 @@ import os
 def init():
     config = getSettings()
 
+    User_Profile = os.getenv('USERPROFILE')
+
+
+    paths_dict = {
+        "Lunar Client": fr'{User_Profile}\.lunarclient\offline\multiver\logs\latest.log',
+        "Badlion Client": fr'{User_Profile}\AppData\Roaming\.minecraft\logs\blclient\minecraft\latest.log',
+        "Feather Client": fr'{User_Profile}\AppData\Roaming\.minecraft\logs\latest.log',
+        "Vanilla": fr'{User_Profile}\AppData\Roaming\.minecraft\logs\latest.log'
+    }
+
     API_KEY = config["API_KEY"]
     PATH = config["PATH"]
+    PATH = list(paths_dict.keys())[list(paths_dict.values()).index(config["PATH"])]
     SKYWARS_WINS = config["REQUIREMENTS"]["SKYWARS_WINS"]
     SKYWARS_LEVEL = config["REQUIREMENTS"]["SKYWARS_LEVEL"]
     BEDWARS_STARS = config["REQUIREMENTS"]["BEDWARS_STARS"]
