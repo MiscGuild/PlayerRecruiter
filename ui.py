@@ -119,7 +119,7 @@ class App(customtkinter.CTk):
         self.stat_settings_frame.text_inputs = []
 
         self.skywars_wins = CustomEntry(app=self,
-                                        frame=self.stat_settings_frame,
+                                        frame=self.settings_frame,
                                         text="SkyWars Wins:",
                                         eRow=3,
                                         eCol=1,
@@ -130,7 +130,7 @@ class App(customtkinter.CTk):
                                         append=True)
 
         self.skywars_level = CustomEntry(app=self,
-                                         frame=self.stat_settings_frame,
+                                         frame=self.settings_frame,
                                          text="SkyWars Level:",
                                          eRow=3,
                                          eCol=3,
@@ -141,7 +141,7 @@ class App(customtkinter.CTk):
                                          append=True)
 
         self.bedwars_wins = CustomEntry(app=self,
-                                        frame=self.stat_settings_frame,
+                                        frame=self.settings_frame,
                                         text="BedWars Wins:",
                                         eRow=4,
                                         eCol=1,
@@ -152,7 +152,7 @@ class App(customtkinter.CTk):
                                         append=True)
 
         self.bedwars_stars = CustomEntry(app=self,
-                                         frame=self.stat_settings_frame,
+                                         frame=self.settings_frame,
                                          text="BedWars Stars:",
                                          eRow=4,
                                          eCol=3,
@@ -163,7 +163,7 @@ class App(customtkinter.CTk):
                                          append=True)
 
         self.bedwars_index = CustomEntry(app=self,
-                                         frame=self.stat_settings_frame,
+                                         frame=self.settings_frame,
                                          text="BedWars Index:",
                                          eRow=5,
                                          eCol=1,
@@ -174,7 +174,7 @@ class App(customtkinter.CTk):
                                          append=True)
 
         self.bedwars_fkdr = CustomEntry(app=self,
-                                        frame=self.stat_settings_frame,
+                                        frame=self.settings_frame,
                                         text="BedWars FKDR:",
                                         eRow=5,
                                         eCol=3,
@@ -185,7 +185,7 @@ class App(customtkinter.CTk):
                                         append=True)
 
         self.duels_wins = CustomEntry(app=self,
-                                      frame=self.stat_settings_frame,
+                                      frame=self.settings_frame,
                                       text="Duels Wins:",
                                       eRow=6,
                                       eCol=1,
@@ -196,7 +196,7 @@ class App(customtkinter.CTk):
                                       append=True)
 
         self.duels_wlr = CustomEntry(app=self,
-                                     frame=self.stat_settings_frame,
+                                     frame=self.settings_frame,
                                      text="Duels WLR:",
                                      eRow=6,
                                      eCol=3,
@@ -207,7 +207,7 @@ class App(customtkinter.CTk):
                                      append=True)
 
         self.arcade_wins = CustomEntry(app=self,
-                                       frame=self.stat_settings_frame,
+                                       frame=self.settings_frame,
                                        text="Arcade Wins:",
                                        eRow=7,
                                        eCol=1,
@@ -218,7 +218,7 @@ class App(customtkinter.CTk):
                                        append=True)
 
         self.murder_mystery_wins = CustomEntry(app=self,
-                                               frame=self.stat_settings_frame,
+                                               frame=self.settings_frame,
                                                text="Murder Mystery Wins:",
                                                eRow=7,
                                                eCol=3,
@@ -229,7 +229,7 @@ class App(customtkinter.CTk):
                                                append=True)
 
         self.minimum_gexp = CustomEntry(app=self,
-                                        frame=self.stat_settings_frame,
+                                        frame=self.settings_frame,
                                         text="Minimum GEXP:",
                                         eRow=8,
                                         eCol=1,
@@ -240,7 +240,7 @@ class App(customtkinter.CTk):
                                         append=True)
 
         self.maximum_guild_level = CustomEntry(app=self,
-                                               frame=self.stat_settings_frame,
+                                               frame=self.settings_frame,
                                                text="Max Guild Level:",
                                                eRow=8,
                                                eCol=3,
@@ -251,7 +251,7 @@ class App(customtkinter.CTk):
                                                append=True)
 
         self.minimum_network_level = CustomEntry(app=self,
-                                                 frame=self.stat_settings_frame,
+                                                 frame=self.settings_frame,
                                                  text="Network Level:",
                                                  eRow=9,
                                                  eCol=1,
@@ -261,7 +261,7 @@ class App(customtkinter.CTk):
                                                  defaultVal=settings.NETWORK_LEVEL,
                                                  append=True)
 
-        self.save_button = CustomButton(self.stat_settings_frame,
+        self.save_button = CustomButton(self.settings_frame,
                                         text="Save",
                                         command=self.save_settings,
                                         row=10,
@@ -352,7 +352,10 @@ class App(customtkinter.CTk):
 
         # select default frame
         if not settings.API_KEY:
-            self.select_frame_by_name("other_settings_frame")
+            select_frame_by_name(self, "settings_frame")
+        if not settings.API_KEY_VALID:
+            CTkMessagebox(title="Error", message="Your API Key is invalid!", icon="warning")
+            select_frame_by_name(self, "settings_frame")
         else:
             self.select_frame_by_name("home")
 
@@ -402,12 +405,6 @@ class App(customtkinter.CTk):
 
     def find_players_button_event(self):
         self.find_players()
-
-    def select_other_settings_button_event(self):
-        self.select_frame_by_name("other_settings_frame")
-
-    def select_stat_settings_button_event(self):
-        self.select_frame_by_name("stat_settings_frame")
 
     # Event that gets called every 5 millisecond, makes user focus on next text box if tab is pressed
     def tab_press_check(self, event):
