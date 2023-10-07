@@ -388,9 +388,6 @@ class App(customtkinter.CTk):
             self.select_frame_by_name("home")
 
     def find_players(self):
-        self.meets_requirements_frame_no_players_label.destroy()
-        self.guildless_frame_no_players_label.destroy()
-        self.home_frame_no_players_label.destroy()
 
         all_players, guildless, meets_requirements, errors = asyncio.run(grabChat())
         if all_players is not None and set(all_players) != set(self.all_players):
