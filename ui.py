@@ -7,8 +7,10 @@ import pyperclip
 from utils import settings
 from utils.chatGrabber import grabChat
 from utils.setup import setup
+from utils.ui_utils import CustomNavigationButton, CustomButton, CustomFrame, CustomLabel, CustomEntry, CustomComboBox, \
+    select_frame_by_name
 
-from utils.ui_utils import CustomNavigationButton, CustomButton, CustomFrame, CustomLabel, CustomEntry
+from CTkMessagebox import CTkMessagebox
 
 
 class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
@@ -115,8 +117,34 @@ class App(customtkinter.CTk):
         self.errors_frame = CustomFrame(self)
 
         # create "stat settings" frame
-        self.stat_settings_frame = CustomFrame(self)
-        self.stat_settings_frame.text_inputs = []
+        self.settings_frame = CustomFrame(self)
+        self.settings_frame.text_inputs = []
+
+        api_key_text = "HIDDEN" if settings.API_KEY_VALID else ""
+
+        self.api_key = CustomEntry(app=self,
+                                   frame=self.settings_frame,
+                                   text="API Key:",
+                                   eRow=0,
+                                   eCol=1,
+                                   eHeight=1,
+                                   hasLabel=True,
+                                   lRow=0,
+                                   lCol=0,
+                                   defaultVal=api_key_text,
+                                   append=True)
+
+        self.path = CustomComboBox(app=self,
+                                   frame=self.settings_frame,
+                                   text="Path:",
+                                   cRow=0,
+                                   cCol=3,
+                                   values=["Lunar Client", "Badlion Client", "Feather Client", "Vanilla"],
+                                   defaultVal=settings.PATH,
+                                   hasLabel=True,
+                                   lRow=0,
+                                   lCol=2,
+                                   append=True)
 
         self.skywars_wins = CustomEntry(app=self,
                                         frame=self.settings_frame,
